@@ -27,7 +27,7 @@ services:
     networks:
       - monitoring
     
-  node-exporter:
+  node_exporter:
     image: prom/node-exporter:latest
     ports:
       - "9100:9100"
