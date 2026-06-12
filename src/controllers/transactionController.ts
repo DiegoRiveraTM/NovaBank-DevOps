@@ -10,6 +10,10 @@ export const deposits = async (req: AuthRequest, res: Response): Promise<void> =
         const { amount } = req.body;
         const user = await User.findById(userId);
         
+        if(!userId) {
+            res.status(400).json({ message: "UserId not provided"})
+            return;
+        }
         if (!user) {
             res.status(404).json({ message: "User not found" });
             return;
@@ -18,6 +22,11 @@ export const deposits = async (req: AuthRequest, res: Response): Promise<void> =
             res.status(400).json({ message: "Amount is required and must be a number" });
             return;
         }
+        if (amount <= 0){
+            res.status(400).json({ message: "Amount should be more than 0"})
+            return;
+        }
+
         const depositAmount = Number(amount);
         user.balance += depositAmount;
         const newTransaction = new Transaction({
@@ -56,7 +65,7 @@ export const transfers = async (req: AuthRequest, res: Response): Promise<void> 
         const { amount, clabe, saveUser} = req.body;
         const sender = await User.findById(req.user?.id);
         
-        if (!amount || !clabe ){
+        if (amount === undefined || amount === null || !clabe) {
             res.status(400).json ({ message: "Amount and CLABE are required"});
             return;
         }
@@ -67,7 +76,7 @@ export const transfers = async (req: AuthRequest, res: Response): Promise<void> 
         }
 
         if( amount <= 0){
-            res.status(400).json({ message: "Amount must be greater than 0" });
+            res.status(400).json({ message: "Amount should be more than 0" });
             return;
         }
 

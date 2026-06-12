@@ -1,0 +1,16 @@
+
+name: ci-cd
+
+on:
+    push:
+        branches:
+            - master
+        pull_request:
+            branches:
+                - master
+permissions:
+    contents: read
+    id-token: write
+jobs:
+    test_and_build:
+        runs-on: ubuntu-leatest ##This job create a container of ubuntu to run the app

@@ -1,5 +1,6 @@
 {
 "compilerOptions": {
+    "types" : ["jest"],
     "rootDir": "./src",
     "outDir": "./dist",
     "module": "commonjs",
