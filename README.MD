@@ -34,10 +34,11 @@ All endpoints are protected with JWT authentication middleware. The API can be t
 |--------|----------|-------------|---------------|
 | POST | `/api/auth/register` | Register a new user | No |
 | POST | `/api/auth/login` | Login and receive JWT token | No |
-| GET | `/api/users/:id` | Get user information | Yes |
-| POST | `/api/transactions/deposit` | Deposit funds | Yes |
-| POST | `/api/transactions/transfer` | Transfer funds via CLABE | Yes |
+| GET | `/api/users/me` | Get user profile | Yes |
+| POST | `/api/transactions/deposits` | Deposit funds | Yes |
+| POST | `/api/transactions/transfers` | Transfer funds via CLABE | Yes |
 | GET | `/api/transactions` | Get transaction history | Yes |
+| GET | `/api/transactions/balance` | Get current balance | Yes |
 | GET | `/api/metrics` | Prometheus metrics endpoint | No |
 
 ---
@@ -91,8 +92,33 @@ Every push to `main` triggers a GitHub Actions workflow that:
 
 ---
 
-## Screenshots
+## AWS Deployment
 
-*(coming soon)*
+The project is deployed on AWS EC2 (t3.micro) provisioned with Terraform.
+
+![AWS Instance Running](./src/docs/aws-instance-running.png)
+
+### Grafana Dashboard
+![Grafana AWS Dashboard](./src/docs/grafana-aws-dashboard.png)
+
+### Prometheus Targets
+![Prometheus AWS](./src/docs/prometheus-aws.png)
+
+### API Tests on AWS
+
+#### Register
+![Register](./src/docs/postman-test-register-endpoint-aws.png)
+
+#### Login
+![Login](./src/docs/postman-test-login-endpoint-aws.png)
+
+#### Deposit
+![Deposit](./src/docs/postman-test-deposits-endpoint-aws.png)
+
+#### Transfer
+![Transfer](./src/docs/postman-test-transfers-endpoint-aws.png)
+
+#### Balance
+![Balance](./src/docs/postman-test-transfers-getBalance-endpoint-aws.png)
 
 > **Note:** AWS deployment URLs may change as the EC2 instance is restarted. The project can be run locally using `docker-compose up --build`.
