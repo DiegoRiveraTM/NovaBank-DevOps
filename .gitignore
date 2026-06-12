@@ -1,0 +1,17 @@
+##Claves Privadas (si alguien clona el repositorio, no tendrá acceso a las claves, importante colocarlo en la documentación)
+.env
+
+##Para el backend 
+/node_modules/
+/dist/
+
+##Para terraform
+terraform/.terraform/
+terraform/terraform.tfstate
+terraform/terraform.tfstate.backup
+terraform/*.tfvars
+
+##General
+.DS_Store
+*.log
+
