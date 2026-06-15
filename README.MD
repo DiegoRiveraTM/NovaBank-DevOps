@@ -46,7 +46,7 @@ All endpoints are protected with JWT authentication middleware. The API can be t
 ## Security Considerations
 - SSH access is currently open to all IPs. In production, restrict port 22 to specific IP ranges.
 - Prometheus and Node Exporter ports should be restricted to internal access only in a production environment.
-
+- If you're thinking to use or adapt this project, consider to change the VPC ip's that are on the ingress/egress in order to avoid security problems
 ---
 
 ## DevOps Stack
@@ -120,5 +120,9 @@ The project is deployed on AWS EC2 (t3.micro) provisioned with Terraform.
 
 #### Balance
 ![Balance](./src/docs/postman-test-transfers-getBalance-endpoint-aws.png)
+
+## Github Actions CI/CD
+
+This project has a CI/CD pipeline using three workflow files (ci-cd, docker, and terraform) in order to test and create a complete environment to run the project, using the correct credentials and configurations.
 
 > **Note:** AWS deployment URLs may change as the EC2 instance is restarted. The project can be run locally using `docker-compose up --build`.

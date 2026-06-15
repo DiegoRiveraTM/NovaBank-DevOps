@@ -8,6 +8,8 @@ on:
     branches: [ "master" ]
   pull_request:
     branches: [ "master" ]
+  workflow_dispatch: ##to run the pipeline without making a commit
+
 
 jobs:
     login:
