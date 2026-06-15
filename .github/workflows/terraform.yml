@@ -23,8 +23,11 @@ jobs:
                 aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
                 aws-region: ${{ secrets.AWS_REGION }}
             - run: terraform init ##descarga modulos necesarios
+              working-directory: ./terraform
             - run: terraform validate
+              working-directory: ./terraform
             - run: terraform plan ##muestra que recursos va a crear/destruir sin hacer nada en AWS, es increible
+              working-directory: ./terraform
     
     terraform-apply:
         name: "Terraform Apply"
@@ -41,4 +44,6 @@ jobs:
                 aws-region: ${{ secrets.AWS_REGION }}
 
             - run: terraform init
+              working-directory: ./terraform
             - run: terraform apply -auto-approve
+              working-directory: ./terraform
