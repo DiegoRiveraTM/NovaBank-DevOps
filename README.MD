@@ -125,6 +125,6 @@ The project is deployed on AWS EC2 (t3.micro) provisioned with Terraform.
 
 This project has a CI/CD pipeline using three workflow files (ci-cd, docker, and terraform) in order to test and create a complete environment to run the project, using the correct credentials and configurations.
 
-![3 Workflows](./src/docs/github-actions workflows.png)
+![3 Workflows](./src/docs/github-actions-workflows.png)
 
 > **Note:** AWS deployment URLs may change as the EC2 instance is restarted. The project can be run locally using `docker-compose up --build`.
