@@ -26,7 +26,7 @@ jobs:
               working-directory: ./terraform
             - run: terraform validate
               working-directory: ./terraform
-            - run: terraform plan ##muestra que recursos va a crear/destruir sin hacer nada en AWS, es increible
+            - run: terraform plan -var="public_key_path=${{ secrets.TF_VAR_PUBLIC_KEY }}" ##muestra que recursos va a crear/destruir sin hacer nada en AWS, es increible
               working-directory: ./terraform
     
     terraform-apply:
@@ -45,5 +45,5 @@ jobs:
 
             - run: terraform init
               working-directory: ./terraform
-            - run: terraform apply -auto-approve
+            - run: terraform apply -auto-approve -var="public_key_path=${{ secrets.TF_VAR_PUBLIC_KEY}}
               working-directory: ./terraform
