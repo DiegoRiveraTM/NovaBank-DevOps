@@ -1,0 +1,27 @@
+##https://github.com/docker/login-action
+##Never had worked on something like this, docker.yml helps to create a container with ubuntu, clone my repository of github, login with my credentials,build an image of docker and load up the image to ghcr
+name: Docker Image CI
+
+
+on:
+  push:
+    branches: [ "   master" ]
+  pull_request:
+    branches: [ "master" ]
+
+jobs:
+    login:
+        runs-on: ubuntu-latest
+        steps:
+            - uses: actions/checkout@v4
+            - name: Login to GitHub Container Registry
+              uses: docker/login-action@v4
+              with:
+                  registry: ghcr.io
+                  username: ${{ github.actor }}
+                  password: ${{ secrets.GITHUB_TOKEN }}
+            - name: Build and push
+              uses: docker/build-push-action@v7
+              with:
+                  push: true
+                  tags: ghcr.io/diegoriveratm/novabank-devops:latest

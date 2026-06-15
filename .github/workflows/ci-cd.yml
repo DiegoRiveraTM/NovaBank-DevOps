@@ -1,16 +1,25 @@
-
-name: ci-cd
+name: test-build
 
 on:
     push:
         branches:
             - master
-        pull_request:
-            branches:
-                - master
+    pull_request:
+        branches:
+            - master
 permissions:
     contents: read
     id-token: write
 jobs:
-    test_and_build:
-        runs-on: ubuntu-leatest ##This job create a container of ubuntu to run the app
+    test-build:
+        runs-on: ubuntu-latest
+        steps:
+        - uses: actions/checkout@v4 #clona el repositorio 
+        - name: Setup Node.js 22.x 
+          uses: actions/setup-node@v4 ##descarga la version de node que se está usando en el repo 
+          with:
+              node-version: '22.x'
+              cache: 'npm'
+        - run: npm ci ##instala dependencias
+        - run: npm run build --if-present ##compila ts a js
+        - run: npm test ##corre los tests
