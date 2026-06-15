@@ -1,3 +1,3 @@
 variable "public_key_path" {
-    description = "Path to the public key"
+    description = "Public Key Content"
 }

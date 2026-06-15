@@ -29,7 +29,6 @@ resource "aws_instance" "novabank_instance" {
 }
 
 resource "aws_key_pair" "novabank_key" {
-    key_name   = "novabank-key"
-    public_key = file(var.public_key_path)
+    public_key = var.public_key_path
 }
 

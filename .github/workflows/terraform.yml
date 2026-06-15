@@ -45,5 +45,5 @@ jobs:
 
             - run: terraform init
               working-directory: ./terraform
-            - run: terraform apply -auto-approve -var="public_key_path=${{ secrets.TF_VAR_PUBLIC_KEY}}
+            - run: terraform apply -auto-approve -var="public_key_path=${{ secrets.TF_VAR_PUBLIC_KEY}}  
               working-directory: ./terraform
